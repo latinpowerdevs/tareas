@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Agregar nueva tarea </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-input [(ngModel)]="nuevaTarea.nombre"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Detalle</ion-label>
+        <ion-textarea [(ngModel)]="nuevaTarea.detalle"></ion-textarea>
+      </ion-item>
+  
+      <br />
+      <ion-segment>
+        <ion-button (click)="agregar()">
+          <ion-icon name="add"></ion-icon>
+          <ion-label>Agregar</ion-label>
+        </ion-button>
+      </ion-segment>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
