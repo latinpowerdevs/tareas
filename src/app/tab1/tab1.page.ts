@@ -13,23 +13,14 @@ export class Tab1Page implements OnInit{
   constructor(private tareasService: TodoService, private modal: ModalController) {}
   tareas = null;
   
-
   ngOnInit(){
-    this.obtenerTareas();  
-  }
-
-
-  async obtenerTareas(){
-    await this.tareasService.lista().then(r => {
-      console.log('TAREAS', r);
-      this.tareas = r;
+    this.tareasService.tareas$.subscribe( _tareas => {
+      this.tareas = _tareas;
     });
   }
 
   async agregarTarea(nuevaTarea){
-    await this.tareasService.agregar(nuevaTarea).then( r => {
-      this.tareas.push(r);
-    });
+    await this.tareasService.agregar(nuevaTarea).then( r => { });
   }
 
   async agregar(){
@@ -49,16 +40,10 @@ export class Tab1Page implements OnInit{
   }
 
   async cambiarEstado(tarea){
-    await this.tareasService.actualizar(tarea).then(r => {
-      console.log('TAREA ACTUALIZADA', r );
-    });
+    await this.tareasService.actualizar(tarea).then(r => { });
   }
 
   async eliminar(tarea){
-    await this.tareasService.eliminar(tarea).then(r => {
-      console.log('TAREA ELIMINADA', r);
-      if (r)
-        this.tareas.splice(this.tareas.map( t => t.id).indexOf(tarea.id), 1);
-    });
+    await this.tareasService.eliminar(tarea).then(r => { });
   }
 }

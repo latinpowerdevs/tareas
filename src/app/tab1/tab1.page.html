@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   
   <ion-card>
     <ion-card-header>
@@ -23,7 +23,11 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list lines="full">
+      <ion-item *ngIf="tareas.length == 0" lines="none">
+        <ion-label>No hay tareas</ion-label>
+      </ion-item>
+
+      <ion-list lines="full" *ngIf="tareas.length > 0">
         <ion-item *ngFor="let tarea of tareas" button>
           <ion-label>
             <b>{{ tarea?.nombre }}</b>

@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {
+export class TabsPage implements OnInit{
+  tareasPendientes = [];
+  
+  constructor(private tareasService: TodoService) {}
 
-  constructor() {}
-
+  ngOnInit() {
+    this.tareasService.tareas$.subscribe( _tareas => {
+      this.tareasPendientes = _tareas.filter( t => t.estado == false );
+    })
+  }
 }
